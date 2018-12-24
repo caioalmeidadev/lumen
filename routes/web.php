@@ -19,3 +19,11 @@ $app->get('/hello/{name}',[
     'as' => 'hello-world',
     'uses' => 'HelloController@index'
     ]);
+
+$app->group(['prefix' => 'api'],function() use ($app){
+  $app->get('/users','Api\UsersController@index');
+  $app->get('/users/{id}','Api\UsersController@show');
+  $app->post('/users','Api\UsersController@store');
+  $app->put('/users/{id}','Api\UsersController@update');
+  $app->delete('/users/{id}','Api\UsersController@destroy');
+});
